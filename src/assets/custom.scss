@@ -1,0 +1,191 @@
+@import './variable';
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+@mixin mobile{
+  @media (max-width: 568px) {
+    @content
+  }
+}
+
+*{
+  box-sizing: border-box;
+  font-family: 'Noto Sans TC', serif;
+}
+
+html, body{
+  width: auto;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  background-color: #F8F8F8;
+}
+
+h1, h2, h3, h4, h5, p{
+  margin: 0;
+}
+
+ul{
+  list-style: none;
+  padding-left: 0px;
+  margin: 0;
+}
+
+#app {
+  > .container{
+    padding-top: 76px;
+    padding-bottom: 76px;
+    > .row{
+      margin-right: 0;
+      margin-left: 0;
+    }
+    @include mobile{
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+  }
+}
+
+.m-progress-bar{
+  display: flex;
+  align-items: center;
+  margin-bottom: 76px;
+  &__item{
+    position: relative;
+    z-index: 2;
+    > p{
+      position: absolute;
+      bottom: -1.6rem;
+      left: 50%;
+      transform: translate(-50%);
+      width: auto;
+      white-space: nowrap;
+    }
+  }
+  &__line{
+    position: relative;
+    width: 100%;
+    height: 12px;
+    margin-left: -5px;
+    margin-right: -5px;
+    background-color: $progress-bg;
+    &::before{
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: $primary;
+      transition: 0.5s;
+    }
+    &#{&}--active{
+      &::before{
+        width: 100%;
+      }
+    }
+  }
+  &__icon{
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $progress-bg;
+    border-radius: 50%;
+    color: #D1D1D1;
+    &#{&}--active{
+      background-color: $primary;
+      color: #fff;
+    }
+  }
+}
+
+.order-info{
+  height: auto;
+  margin-top: 40px;
+  background-color: $form-bg;
+  border-radius: 11px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  padding: 44px 65px 35px 65px;
+  > img{
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+  &__name{
+    position: absolute;
+    top: 44px;
+    left: 0;
+    padding: 35px 8px;
+    background-color: #fff;
+    border-radius: 0px 10px 10px 0px;
+    -webkit-writing-mode: vertical-lr;
+    writing-mode: vertical-lr;
+    @include mobile{
+      left: auto;
+      right: -40px;
+    }
+  }
+  &__title{
+    font-size: 1.125rem;
+    margin-bottom: 8px;
+  }
+  > p{
+    font-size: 0.875rem;
+  }
+  &__price{
+    margin-top: 15px;
+  }
+  @include mobile{
+    position: fixed;
+    top: 70px;
+    left: -80%;
+    width: 80%;
+    padding: 20px 25px;
+    z-index: 10;
+    transition: 0.5s;
+    &.open{
+      left: 0px;
+    }
+  }
+}
+
+.form{
+  &__container{
+    background-color: #fff;
+    border-radius: 11px;
+    padding: 60px;
+    label{
+      color: #888888;
+    }
+  }
+  &__title{
+    margin-bottom: 30px;
+    > strong{
+      color: $primary;
+    }
+    > span{
+      font-size: 20px;
+    }
+  }
+  &-control{
+    background-color: #EBEBEB;
+    border-color: transparent;
+  }
+  &__require{
+    &::after{
+      content: '*';
+      color: red;
+      margin-left: 5px;
+    }
+  }
+}
+
+.rule{
+  &__hight-line{  
+    color: $primary;
+  }
+  &.is_invalid{
+    color: $danger !important;
+  }
+}
